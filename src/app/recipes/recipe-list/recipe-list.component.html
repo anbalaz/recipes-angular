@@ -6,7 +6,8 @@
   <div class="row">
     <div class="col-xs-12">
       <app-recipe-item *ngFor="let recipeElement of recipes"
-                       [recipe]="recipeElement">
+                       [recipe]="recipeElement"
+                       (recipeClicked)="onRecipeClicked(recipeElement)">
       </app-recipe-item>
     </div>
   </div>
