@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
@@ -18,9 +18,4 @@ export class RecipesComponent implements OnInit {
       (recipe: Recipe) => { this.recipe = recipe }
     );
   }
-
-  onRecipeClicked(recipeElement: Recipe) {
-    this.recipe = recipeElement;
-  }
-
 }
