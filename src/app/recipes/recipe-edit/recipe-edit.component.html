@@ -1,0 +1,12 @@
+<p>recipe-edit works!</p>
+<div *ngIf="!editMode; else edit">
+  <h3>
+    This is create mode.
+  </h3>
+</div>
+
+<ng-template #edit>
+  <h3>
+    This is edit mode.
+  </h3>
+</ng-template>
