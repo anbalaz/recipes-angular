@@ -5,6 +5,7 @@ import { Ingredient } from "../shared/ingredient.model";
 @Injectable({ providedIn: 'root' })
 export class ShoppingListService {
   ingredientChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
   ingredient: Ingredient;
 
   private ingredients: Ingredient[] = [
@@ -18,6 +19,10 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
+  public getIngredient(index: number): Ingredient {
+    return this.ingredients[index];
+  }
+
   public addIngredient(ingredient: Ingredient): void {
     this.ingredients.push(ingredient)
     this.ingredientChanged.next(this.ingredients.slice());
@@ -25,6 +30,11 @@ export class ShoppingListService {
 
   public addIngredients(ingredients: Ingredient[]): void {
     this.ingredients.push(...ingredients);
+    this.ingredientChanged.next(this.ingredients.slice());
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
     this.ingredientChanged.next(this.ingredients.slice());
   }
 }
