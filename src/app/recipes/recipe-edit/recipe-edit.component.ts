@@ -18,7 +18,7 @@ export class RecipeEditComponent implements OnInit {
     private router: Router) { }
 
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
@@ -28,7 +28,7 @@ export class RecipeEditComponent implements OnInit {
     )
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     // const newRecipe = new Recipe(this.recipeForm.value['name'],
     //   this.recipeForm.value['description'],
     //   this.recipeForm.value['imagePath'],
@@ -41,7 +41,7 @@ export class RecipeEditComponent implements OnInit {
     this.onCancel();
   }
 
-  onAddIngredient() {
+  public onAddIngredient(): void {
     (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup(
         {
@@ -55,7 +55,11 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  public onCancel() {
+  public onDeleteIngredient(index: number): void {
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
+  public onCancel(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
@@ -92,7 +96,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  get controls() {
+  public get controls() {
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 }
