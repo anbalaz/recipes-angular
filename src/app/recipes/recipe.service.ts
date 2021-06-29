@@ -10,25 +10,27 @@ export class RecipeService {
 
   constructor(private shoppingListService: ShoppingListService) { }
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Tasty Schnitzel',
-      'This is simply a test',
-      'https://cookingpotsnpans.com/wp-content/uploads/2020/09/london-broil.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French fries', 200)
-      ]),
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Tasty Schnitzel',
+  //     'This is simply a test',
+  //     'https://cookingpotsnpans.com/wp-content/uploads/2020/09/london-broil.jpg',
+  //     [
+  //       new Ingredient('Meat', 1),
+  //       new Ingredient('French fries', 200)
+  //     ]),
 
-    new Recipe(
-      'Big fat burger',
-      'This is simply a test',
-      'https://cookingpotsnpans.com/wp-content/uploads/2020/09/london-broil.jpg',
-      [
-        new Ingredient('Buns', 2),
-        new Ingredient('Meat', 1)
-      ])
-  ];
+  //   new Recipe(
+  //     'Big fat burger',
+  //     'This is simply a test',
+  //     'https://cookingpotsnpans.com/wp-content/uploads/2020/09/london-broil.jpg',
+  //     [
+  //       new Ingredient('Buns', 2),
+  //       new Ingredient('Meat', 1)
+  //     ])
+  // ];
+
+  private recipes: Recipe[] = [];
 
   getRecipes(): Recipe[] {
     return this.recipes.slice();
@@ -44,6 +46,11 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
   }
 
