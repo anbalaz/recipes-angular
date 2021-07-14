@@ -14,7 +14,7 @@ interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  private signUpUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=';
+  private signUpUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
   private webApiKey = 'AIzaSyBvCWI1vHxBTmXZTHc_VRww1l6tZgRmeJs';
 
   constructor(private http: HttpClient) { }
